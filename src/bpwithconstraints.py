@@ -1,7 +1,7 @@
 from openopt import *
 from numpy import sin, cos
 
-N = 15
+N = 20
 
 items = [
     {
@@ -16,11 +16,12 @@ items = [
 bins = {
     'volume': 35,
     'weight': 30,
-    'n': 5
+    'n': 7
 }
 
 constraints = lambda values: 2*values['volume']+0.5*values['weight'] <70
 p = BPP(items, bins, constraints = constraints)
+# p = BPP(items, bins, goal = 'min')
 r = p.solve('glpk', iprint = 0)
 
 for i, s in enumerate(r.xf):
